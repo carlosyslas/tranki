@@ -17,9 +17,12 @@ This app was created with a specific philosophy in mind: simplicity and focus. I
 
 ## Tech Stack
 
+MVVM architecture usingthe following SDKs:
+
 - UIKit
 - UserDefaults
-- 
+- AVFoundation
+- NotificationCenter
 
 ## Class Diagram
 
