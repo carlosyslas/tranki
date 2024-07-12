@@ -17,7 +17,7 @@ This app was created with a specific philosophy in mind: simplicity and focus. I
 
 ## Tech Stack
 
-MVVM architecture usingthe following SDKs:
+MVVM architecture using the following SDKs:
 
 - UIKit
 - UserDefaults
