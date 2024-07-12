@@ -15,7 +15,13 @@
 
 This app was created with a specific philosophy in mind: simplicity and focus. It aims to provide a tool for meditation practice without upselling or promoting additional services. Whether you're a beginner or experienced meditator, you can use this app to enhance your meditation sessions without distractions.
 
-## App architecture
+## Tech Stack
+
+- UIKit
+- UserDefaults
+- 
+
+## Class Diagram
 
 ```mermaid
 ---
