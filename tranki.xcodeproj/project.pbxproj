@@ -31,11 +31,11 @@
 		01BBE2382C2E110B00089AC5 /* DurationSettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BBE2372C2E110B00089AC5 /* DurationSettingsViewCell.swift */; };
 		01BBE23A2C2E1B2100089AC5 /* DurationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BBE2392C2E1B2100089AC5 /* DurationSettingsViewController.swift */; };
 		01C87EDD2C346E0100B6B7CA /* Notification + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C87EDC2C346E0100B6B7CA /* Notification + Extension.swift */; };
+		01D88EA02C40BF4900440648 /* PlayerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D88E9F2C40BF4900440648 /* PlayerViewModelTests.swift */; };
 		01E281BD2C2CDA1000CCB073 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E281BC2C2CDA1000CCB073 /* AppDelegate.swift */; };
 		01E281BF2C2CDA1000CCB073 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E281BE2C2CDA1000CCB073 /* SceneDelegate.swift */; };
 		01E281C12C2CDA1000CCB073 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E281C02C2CDA1000CCB073 /* PlayerViewController.swift */; };
 		01E281C62C2CDA1200CCB073 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E281C52C2CDA1200CCB073 /* Assets.xcassets */; };
-		01E281C92C2CDA1200CCB073 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 01E281C82C2CDA1200CCB073 /* Base */; };
 		01E281D32C2CDD7500CCB073 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E281D22C2CDD7500CCB073 /* Theme.swift */; };
 		01E281D62C2CDEAA00CCB073 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E281D52C2CDEAA00CCB073 /* UIColor + Extension.swift */; };
 		01E281D82C2CE1F800CCB073 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E281D72C2CE1F800CCB073 /* SettingsViewController.swift */; };
@@ -79,12 +79,12 @@
 		01BBE2372C2E110B00089AC5 /* DurationSettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationSettingsViewCell.swift; sourceTree = "<group>"; };
 		01BBE2392C2E1B2100089AC5 /* DurationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationSettingsViewController.swift; sourceTree = "<group>"; };
 		01C87EDC2C346E0100B6B7CA /* Notification + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification + Extension.swift"; sourceTree = "<group>"; };
+		01D88E9F2C40BF4900440648 /* PlayerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModelTests.swift; sourceTree = "<group>"; };
 		01E281B92C2CDA1000CCB073 /* tranki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tranki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E281BC2C2CDA1000CCB073 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01E281BE2C2CDA1000CCB073 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		01E281C02C2CDA1000CCB073 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		01E281C52C2CDA1200CCB073 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		01E281C82C2CDA1200CCB073 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01E281CA2C2CDA1200CCB073 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01E281D22C2CDD7500CCB073 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		01E281D52C2CDEAA00CCB073 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
@@ -115,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				01A221F92C40A62E0078120C /* PlayerSettingsViewModelTests.swift */,
+				01D88E9F2C40BF4900440648 /* PlayerViewModelTests.swift */,
 			);
 			path = trankiUITests;
 			sourceTree = "<group>";
@@ -185,7 +186,6 @@
 				01E281BC2C2CDA1000CCB073 /* AppDelegate.swift */,
 				01E281BE2C2CDA1000CCB073 /* SceneDelegate.swift */,
 				01E281C52C2CDA1200CCB073 /* Assets.xcassets */,
-				01E281C72C2CDA1200CCB073 /* LaunchScreen.storyboard */,
 				01E281CA2C2CDA1200CCB073 /* Info.plist */,
 			);
 			path = tranki;
@@ -329,7 +329,6 @@
 				01B26B262C3F6EEE00A6E5B5 /* brown-noise.mp3 in Resources */,
 				01B26B242C3F6D2500A6E5B5 /* cafe.mp3 in Resources */,
 				01B26B1C2C3F687300A6E5B5 /* clock.mp3 in Resources */,
-				01E281C92C2CDA1200CCB073 /* Base in Resources */,
 				01B26B1A2C3F677E00A6E5B5 /* fireplace.mp3 in Resources */,
 				01B26B142C3F5B8F00A6E5B5 /* birds.mp3 in Resources */,
 				01B26B162C3F654300A6E5B5 /* sea-waves.mp3 in Resources */,
@@ -345,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01A221FA2C40A62E0078120C /* PlayerSettingsViewModelTests.swift in Sources */,
+				01D88EA02C40BF4900440648 /* PlayerViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,17 +385,6 @@
 			targetProxy = 01A221F42C40A6170078120C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		01E281C72C2CDA1200CCB073 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01E281C82C2CDA1200CCB073 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		01A221F72C40A6170078120C /* Debug */ = {
@@ -561,7 +550,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tranki/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -587,7 +575,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tranki/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

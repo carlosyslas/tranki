@@ -3,8 +3,9 @@ import SwiftUI
 import AVFoundation
 
 class PlayerViewController: UIViewController {
-    let soundService = SoundManager.shared
     private let settingsVM: PlayerSettingsViewModel
+    private let soundManager: SoundManager
+    
     lazy var playerVM = PlayerViewModel(
         settingsVM: settingsVM
     )
@@ -38,8 +39,9 @@ class PlayerViewController: UIViewController {
         return bar
     }()
     
-    init(settingsVM: PlayerSettingsViewModel) {
+    init(settingsVM: PlayerSettingsViewModel, soundManager: SoundManager) {
         self.settingsVM = settingsVM
+        self.soundManager = soundManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -129,7 +131,7 @@ class PlayerViewController: UIViewController {
         guard let userInfo = notification.userInfo else { return }
         guard let sound = userInfo["sound"] as? Sound else { return }
         
-        SoundManager.shared.muteSound(sound: sound)
+        soundManager.muteSound(sound: sound)
     }
     
     @objc private func soundUnmutted(_ notification: Notification) {
@@ -137,7 +139,7 @@ class PlayerViewController: UIViewController {
         guard let sound = userInfo["sound"] as? Sound else { return }
         let volume = settingsVM.getVolume(sound: sound)
         
-        SoundManager.shared.unmuteSound(sound: sound, previousVolume: volume)
+        soundManager.unmuteSound(sound: sound, previousVolume: volume)
     }
     
     @objc private func soundVolumeSet(_ notification: Notification) {
@@ -145,7 +147,7 @@ class PlayerViewController: UIViewController {
         guard let sound = userInfo["sound"] as? Sound else { return }
         guard let volume = userInfo["volume"] as? Float else { return }
         
-        SoundManager.shared.updateSoundVolume(sound: sound, volume: volume)
+        soundManager.updateSoundVolume(sound: sound, volume: volume)
     }
 
     private func configureTogglePlayButton(isPlaying: Bool) {
@@ -154,15 +156,15 @@ class PlayerViewController: UIViewController {
     }
 
     private func playSounds() {
-        DispatchQueue.global(qos: .background).async { [weak settingsVM] in
+        DispatchQueue.global(qos: .background).async { [weak settingsVM, weak soundManager] in
             guard let settings = settingsVM?.soundSettings else { return }
-            SoundManager.shared.playAllSounds(soundSettings: Array(settings.values))
+            soundManager?.playAllSounds(soundSettings: Array(settings.values))
         }
     }
     
     private func stopSounds() {
-        DispatchQueue.global(qos: .background).async {
-            SoundManager.shared.stopAllSounds()
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            self?.soundManager.stopAllSounds()
         }
     }
     
@@ -171,7 +173,8 @@ class PlayerViewController: UIViewController {
             persistenceManager: UserDefaultsPersistenceManager()
         )
         return PlayerViewController(
-            settingsVM: playerSettingsViewModel
+            settingsVM: playerSettingsViewModel,
+            soundManager: AVAudioSoundManager()
         )
     }
 }
@@ -193,7 +196,7 @@ struct PlayerViewControllerRepresentable: UIViewControllerRepresentable {
 
 extension PlayerViewController: PlayerViewModelDelegate {
     func playerViewModelTotalDurationElapsed() {
-        SoundManager.shared.stopAllSounds()
+        soundManager.stopAllSounds()
     }
     
     func playerViewModelProgressUpdated(progress: Float, isPlaying: Bool) {

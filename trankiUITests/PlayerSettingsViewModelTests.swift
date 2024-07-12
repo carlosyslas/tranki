@@ -75,7 +75,6 @@ final class PlayerSettingsViewModelTests: XCTestCase {
     
     func test_notificationsAreSentWhenChangingSettings() {
         let vm = makePlayerSettingsVM()
-        let volumeLevel: Float = 0.72
         expectation(
             forNotification: .muteSound,
             object: nil) { notification in

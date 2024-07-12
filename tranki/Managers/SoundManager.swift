@@ -1,11 +1,21 @@
 import AVFoundation
 
-class SoundManager {
-    static let shared = SoundManager()
+protocol SoundManager: AnyObject {
+    func playAllSounds(soundSettings: [SoundSettings])
+    func playSound(soundSettings: SoundSettings)
+    func updateSoundVolume(sound: Sound, volume: Float)
+    func muteSound(sound: Sound)
+    func unmuteSound(sound: Sound, previousVolume: Float)
+    func stopAllSounds()
+}
+
+
+final class AVAudioSoundManager: SoundManager {
+    static let shared = AVAudioSoundManager()
     
     private let engine = AVAudioEngine()
     private let mixer = AVAudioMixerNode()
-    private var audioPlayers = [AVAudioPlayerNode]()
+    private var audioPlayers = [Sound: AVAudioPlayerNode]()
     private var isPlaying = false
     
     init() {
@@ -20,10 +30,6 @@ class SoundManager {
         engine.connect(mixer, to: engine.mainMixerNode, format: nil)
     }
     
-    private func findSoundIndex(sound: Sound) -> Int? {
-        return Sound.allCases.firstIndex(of: sound) // TODO: Use a dict instead
-    }
-    
     func playAllSounds(soundSettings: [SoundSettings]) {
         soundSettings.forEach { [weak self] settings in
             self?.playSound(soundSettings: settings)
@@ -32,25 +38,17 @@ class SoundManager {
     
     func playSound(soundSettings: SoundSettings) {
         isPlaying = true
-        guard let index = findSoundIndex(sound: soundSettings.sound) else {
-            return
-        }
+        let sound = soundSettings.sound
         
         do {
             try engine.start()
             
             let audioFile = try AVAudioFile(fileName: soundSettings.sound.props.audioFileName)
             
-            if index < audioPlayers.count {
-                engine.disconnectNodeOutput(audioPlayers[index])
-                engine.detach(audioPlayers[index])
-            }
             let player = AVAudioPlayerNode()
-            if index < audioPlayers.count {
-                audioPlayers[index] = player
-            } else {
-                audioPlayers.append(player)
-            }
+            
+            audioPlayers[sound] = player
+
             engine.attach(player)
             engine.connect(player, to: mixer, format: audioFile.processingFormat)
             
@@ -71,10 +69,7 @@ class SoundManager {
     }
     
     func updateSoundVolume(sound: Sound, volume: Float) {
-        guard let index = findSoundIndex(sound: sound) else { return }
-        guard index < audioPlayers.count else { return }
-        
-        audioPlayers[index].volume = volume
+        audioPlayers[sound]?.volume = volume
     }
     
     func muteSound(sound: Sound) {
@@ -87,7 +82,7 @@ class SoundManager {
     
     func stopAllSounds() {
         isPlaying = false
-        audioPlayers.forEach { player in
+        audioPlayers.forEach { _, player in
             player.stop()
         }
         engine.stop()
