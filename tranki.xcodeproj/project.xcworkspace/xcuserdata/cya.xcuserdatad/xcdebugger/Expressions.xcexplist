@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "AVAudioPlayerNode.init(fileName:):AVAudioPlayerNode + Extension.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SoundService.playSound(sound:):SoundService.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "audioPlayers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SoundService.playSound(soundSettings:):SoundService.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "audioPlayers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
