@@ -19,15 +19,18 @@ final class AVAudioSoundManager: SoundManager {
     private var isPlaying = false
     
     init() {
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            self?.setupEngineAndMixer()
+        do {
+            try setupEngineAndMixer()
+        } catch {
+            print("Error when setting up engine and mixer: \(error)")
         }
     }
     
-    private func setupEngineAndMixer() {
+    private func setupEngineAndMixer() throws {
         print("Setting up engine and mixer")
         engine.attach(mixer)
         engine.connect(mixer, to: engine.mainMixerNode, format: nil)
+        try engine.start()
     }
     
     func playAllSounds(soundSettings: [SoundSettings]) {
@@ -41,9 +44,11 @@ final class AVAudioSoundManager: SoundManager {
         let sound = soundSettings.sound
         
         do {
-            try engine.start()
-            
-            let audioFile = try AVAudioFile(fileName: soundSettings.sound.props.audioFileName)
+            guard let fileUrl = Bundle.main.url(forResource: soundSettings.sound.props.audioFileName, withExtension: "mp3") else {
+                print("Audio file not found: \(soundSettings.sound.props.audioFileName)")
+                return
+            }
+            let audioFile = try AVAudioFile(forReading: fileUrl)
             
             let player = AVAudioPlayerNode()
             

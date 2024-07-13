@@ -31,7 +31,7 @@ enum Sound: String, CaseIterable, Codable {
         case .rain:
             SoundProperties(
                 name: "Rain",
-                audioFileName: "rain.mp3",
+                audioFileName: "rain",
                 image: "cloud.rain",
                 credits: SoundCredits(
                     authorName: "avion_mood",
@@ -42,7 +42,7 @@ enum Sound: String, CaseIterable, Codable {
         case .waves:
             SoundProperties(
                 name: "Sea waves",
-                audioFileName: "sea-waves.mp3",
+                audioFileName: "sea-waves",
                 image: "water.waves",
                 credits: SoundCredits(
                     authorName: "monotraum",
@@ -53,7 +53,7 @@ enum Sound: String, CaseIterable, Codable {
         case .brownNoise:
             SoundProperties(
                 name: "Brown noise",
-                audioFileName: "brown-noise.mp3",
+                audioFileName: "brown-noise",
                 image: "waveform",
                 credits: SoundCredits(
                     authorName: "DigitalSpa",
@@ -64,7 +64,7 @@ enum Sound: String, CaseIterable, Codable {
         case .birds:
             SoundProperties(
                 name: "Birds singing",
-                audioFileName: "birds.mp3",
+                audioFileName: "birds",
                 image: "bird",
                 credits: SoundCredits(
                     authorName: "JuliusH",
@@ -75,7 +75,7 @@ enum Sound: String, CaseIterable, Codable {
         case .fireplace:
             SoundProperties(
                 name: "Crackling fireplace",
-                audioFileName: "fireplace.mp3",
+                audioFileName: "fireplace",
                 image: "flame",
                 credits: SoundCredits(
                     authorName: "JuliusH",
@@ -86,7 +86,7 @@ enum Sound: String, CaseIterable, Codable {
         case .clock:
             SoundProperties(
                 name: "Clock ticking",
-                audioFileName: "clock.mp3",
+                audioFileName: "clock",
                 image: "clock",
                 credits: SoundCredits(
                     authorName: "Sonoptic",
@@ -97,7 +97,7 @@ enum Sound: String, CaseIterable, Codable {
         case .keyboard:
             SoundProperties(
                 name: "Keyboard typing",
-                audioFileName: "keyboard.mp3",
+                audioFileName: "keyboard",
                 image: "keyboard",
                 credits: SoundCredits(
                     authorName: "Dunimaci",
@@ -108,7 +108,7 @@ enum Sound: String, CaseIterable, Codable {
         case .purr:
             SoundProperties(
                 name: "Cat purring",
-                audioFileName: "purr.mp3",
+                audioFileName: "purr",
                 image: "cat",
                 credits: SoundCredits(
                     authorName: "ken788",
@@ -119,7 +119,7 @@ enum Sound: String, CaseIterable, Codable {
         case .cricket:
             SoundProperties(
                 name: "Cricket chirp",
-                audioFileName: "cricket.mp3",
+                audioFileName: "cricket",
                 image: "leaf",
                 credits: SoundCredits(
                     authorName: "kmckinney7",
@@ -130,7 +130,7 @@ enum Sound: String, CaseIterable, Codable {
         case .cafe:
             SoundProperties(
                 name: "Cafe noise",
-                audioFileName: "cafe.mp3",
+                audioFileName: "cafe",
                 image: "waveform.and.person.filled",
                 credits: SoundCredits(
                     authorName: "Frederic711",
