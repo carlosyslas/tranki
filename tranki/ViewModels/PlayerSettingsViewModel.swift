@@ -1,12 +1,18 @@
 import Foundation
 
-class PlayerSettingsViewModel: ObservableObject {
+protocol PlayerSettingsViewModelDelegate {
+    func playerSettingsViewModelDurationUpdated(duration: Duration)
+}
+
+final class PlayerSettingsViewModel: ObservableObject {
     private static let soundSettingsKey = "soundSettings"
     private static let durationKey = "duration"
     private let persistenceManager: PersistenceManager
+    var delegate: PlayerSettingsViewModelDelegate?
 
     var duration: Duration {
         didSet {
+            delegate?.playerSettingsViewModelDurationUpdated(duration: duration)
             publishSetDurationEvent(duration: duration)
             storeDuration(durationInSeconds: Int(duration.components.seconds))
         }

@@ -135,19 +135,3 @@ extension DurationSettingsViewController: UIPickerViewDelegate, UIPickerViewData
         }
     }
 }
-
-struct DurationSettingsViewControllerRepresentable: UIViewControllerRepresentable {
-    typealias UIViewControllerType = DurationSettingsViewController
-    
-    func makeUIViewController(context: Context) -> DurationSettingsViewController {
-        return DurationSettingsViewController()
-    }
-    
-    func updateUIViewController(_ uiViewController: DurationSettingsViewController, context: Context) {
-        
-    }
-}
-
-#Preview {
-    DurationSettingsViewControllerRepresentable()
-}

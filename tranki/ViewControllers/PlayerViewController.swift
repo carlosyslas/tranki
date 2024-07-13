@@ -112,6 +112,7 @@ class PlayerViewController: UIViewController {
     @objc private func settingsButtonPressed(_ sender: UIBarButtonItem) {
         let settingsVC = SettingsViewController()
         settingsVC.settingsVM = settingsVM
+        settingsVM.delegate = settingsVC
         navigationController?.pushViewController(settingsVC, animated: true)
     }
     
@@ -177,21 +178,6 @@ class PlayerViewController: UIViewController {
             soundManager: AVAudioSoundManager()
         )
     }
-}
-
-struct PlayerViewControllerRepresentable: UIViewControllerRepresentable {
-    typealias UIViewControllerType = PlayerViewController
-    
-    func makeUIViewController(context: Context) -> PlayerViewController {
-        return PlayerViewController.instantiate()
-    }
-    
-    func updateUIViewController(_ uiViewController: PlayerViewController, context: Context) {
-    }
-}
-
-#Preview {
-    PlayerViewControllerRepresentable()
 }
 
 extension PlayerViewController: PlayerViewModelDelegate {

@@ -15,14 +15,8 @@ class SettingsViewController: UITableViewController {
         tableView.register(SoundSettingsViewCell.self, forCellReuseIdentifier: SettingsViewController.soundSettingsCellIdentifier)
         tableView.register(DurationSettingsViewCell.self, forCellReuseIdentifier: SettingsViewController.durationSettingsCellIdentifier)
         
-        
         layout()
         decorate()
-        subscribe()
-    }
-    
-    deinit {
-        unsubscribe()
     }
 
     private func decorate() {
@@ -97,23 +91,6 @@ class SettingsViewController: UITableViewController {
             self?.tableView.reloadData()
         }
     }
-
-    private func subscribe() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(durationChanged),
-            name: .setDuration,
-            object: nil
-        )
-    }
-    
-    private func unsubscribe() {
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    @objc private func durationChanged(_ notification: Notification) {
-        tableView.reloadData()
-    }
     
     @objc private func creditsButtonTapped() {
         let creditsVC = CreditsViewController()
@@ -134,18 +111,8 @@ extension SettingsViewController: SoundSettingsViewCellDelegate {
     }
 }
 
-struct SettingsVewControllerRepresentable: UIViewControllerRepresentable {
-    typealias UIViewControllerType = SettingsViewController
-    
-    func makeUIViewController(context: Context) -> SettingsViewController {
-        return SettingsViewController()
+extension SettingsViewController: PlayerSettingsViewModelDelegate {
+    func playerSettingsViewModelDurationUpdated(duration: Duration) {
+        tableView.reloadData()
     }
-    
-    func updateUIViewController(_ uiViewController: SettingsViewController, context: Context) {
-        
-    }
-}
-
-#Preview {
-    SettingsVewControllerRepresentable()
 }

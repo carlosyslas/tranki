@@ -42,16 +42,17 @@ classDiagram
     SettingsViewController ..> PlayerSettingsViewModel
     SettingsViewController *.. CreditsViewController
     SettingsViewController *.. DurationSettingsViewController
-    NotificationCenter <.. SettingsViewController
+    SettingsViewController ..|> PlayerSettingsViewModelDelegate
 
     DurationSettingsViewController ..> PlayerSettingsViewModel
 
     PlayerSettingsViewModel ..> PersistenceManager
-    NotificationCenter <.. PlayerSettingsViewModel
+    PlayerSettingsViewModel ..> NotificationCenter
+    PlayerSettingsViewModelDelegate --o PlayerSettingsViewModel
 
     PlayerViewModelDelegate --o PlayerViewModel
     PlayerViewModel ..> PlayerSettingsViewModel
-    NotificationCenter <.. PlayerViewModel
+    PlayerViewModel ..> NotificationCenter
 
     SoundManager <|.. AVAudioSoundManager
 
@@ -60,6 +61,7 @@ classDiagram
     <<protocol>>SoundManager
     <<protocol>>PersistenceManager
     <<protocol>>PlayerViewModelDelegate
+    <<protocol>>PlayerSettingsViewModelDelegate
 ```
 
 ## Contributing
