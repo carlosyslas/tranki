@@ -157,16 +157,17 @@ class PlayerViewController: UIViewController {
     }
 
     private func playSounds() {
-        DispatchQueue.global(qos: .background).async { [weak settingsVM, weak soundManager] in
-            guard let settings = settingsVM?.soundSettings else { return }
-            soundManager?.playAllSounds(soundSettings: Array(settings.values))
+        do {
+            try soundManager.playAllSounds(soundSettings: Array(settingsVM.soundSettings.values))
+        }
+        catch {
+            // TODO: Show an error to the user
+            print("There was an error playing sounds: \(error)")
         }
     }
     
     private func stopSounds() {
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            self?.soundManager.stopAllSounds()
-        }
+        soundManager.stopAllSounds()
     }
     
     static func instantiate() -> PlayerViewController {

@@ -1,8 +1,7 @@
 import AVFoundation
 
 protocol SoundManager: AnyObject {
-    func playAllSounds(soundSettings: [SoundSettings])
-    func playSound(soundSettings: SoundSettings)
+    func playAllSounds(soundSettings: [SoundSettings]) throws
     func updateSoundVolume(sound: Sound, volume: Float)
     func muteSound(sound: Sound)
     func unmuteSound(sound: Sound, previousVolume: Float)
@@ -19,27 +18,25 @@ final class AVAudioSoundManager: SoundManager {
     private var isPlaying = false
     
     init() {
-        do {
-            try setupEngineAndMixer()
-        } catch {
-            print("Error when setting up engine and mixer: \(error)")
-        }
+        setupEngineAndMixer()
     }
     
-    private func setupEngineAndMixer() throws {
+    private func setupEngineAndMixer() {
         print("Setting up engine and mixer")
         engine.attach(mixer)
         engine.connect(mixer, to: engine.mainMixerNode, format: nil)
-        try engine.start()
     }
     
-    func playAllSounds(soundSettings: [SoundSettings]) {
+    func playAllSounds(soundSettings: [SoundSettings]) throws {
+        try engine.start()
+        
         soundSettings.forEach { [weak self] settings in
             self?.playSound(soundSettings: settings)
         }
     }
     
-    func playSound(soundSettings: SoundSettings) {
+    private func playSound(soundSettings: SoundSettings) {
+        guard engine.isRunning == true else { return }
         isPlaying = true
         let sound = soundSettings.sound
         
@@ -90,6 +87,8 @@ final class AVAudioSoundManager: SoundManager {
         audioPlayers.forEach { _, player in
             player.stop()
         }
-        engine.stop()
+        if engine.isRunning {
+            engine.stop()
+        }
     }
 }
