@@ -7,7 +7,7 @@ class PlayerViewController: UIViewController {
     private let soundManager: SoundManager
     
     lazy var playerVM = PlayerViewModel(
-        settingsVM: settingsVM
+        totalDuration: settingsVM.duration
     )
     
     private lazy var settingsButton: UIBarButtonItem = {

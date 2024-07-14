@@ -5,11 +5,18 @@ final class PlayerSettingsViewModelTests: XCTestCase {
     func test_onInit_setsTheDefaultSettingsAsADictionaryInTheVM() {
         let vm = makePlayerSettingsVM()
         
+        let firstSound = Sound.allCases.first
         let settings: Dictionary<String, SoundSettings> = vm.soundSettings
         
         XCTAssertEqual(settings.count, Sound.allCases.count)
         settings.values.forEach { setting in
             XCTAssertEqual(setting.volume, 0.5)
+            // Only the first sound is active by defualt
+            if setting.sound == firstSound {
+                XCTAssertTrue(setting.isActive)
+            } else {
+                XCTAssertFalse(setting.isActive)
+            }
         }
     }
     
@@ -18,7 +25,7 @@ final class PlayerSettingsViewModelTests: XCTestCase {
         let vm = makePlayerSettingsVM(persistenceManager: persistenceManager)
         let volumeLevel: Float = 0.73
         
-        vm.setVolume(sound: .birds, volume: volumeLevel)
+        vm.setVolume(sound: .rain, volume: volumeLevel)
         guard let storedData = persistenceManager.currentData else {
             XCTFail("Stored data is nil")
             return
@@ -28,7 +35,7 @@ final class PlayerSettingsViewModelTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(vm.getVolume(sound: .birds), volumeLevel)
+        XCTAssertEqual(vm.getVolume(sound: .rain), volumeLevel)
         XCTAssertEqual(vm.soundSettings.count, storedSettings.count)
         vm.soundSettings.forEach { name, setting in
             XCTAssertEqual(setting.volume, storedSettings[name]?.volume)
@@ -39,7 +46,7 @@ final class PlayerSettingsViewModelTests: XCTestCase {
         let persistenceManager = FakePersistenceManager()
         let vm = makePlayerSettingsVM(persistenceManager: persistenceManager)
         
-        vm.toggleActive(sound: .birds)
+        vm.toggleActive(sound: .rain)
         guard let storedData = persistenceManager.currentData else {
             XCTFail("Stored data is nil")
             return
@@ -49,7 +56,7 @@ final class PlayerSettingsViewModelTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(vm.getIsActive(sound: .birds), false)
+        XCTAssertEqual(vm.getIsActive(sound: .rain), false)
         XCTAssertEqual(vm.soundSettings.count, storedSettings.count)
         vm.soundSettings.forEach { name, setting in
             XCTAssertEqual(setting.isActive, storedSettings[name]?.isActive)
@@ -81,7 +88,7 @@ final class PlayerSettingsViewModelTests: XCTestCase {
                 guard let sound = notification.userInfo?["sound"] as? Sound else {
                     return false
                 }
-                XCTAssertEqual(sound, Sound.birds)
+                XCTAssertEqual(sound, Sound.rain)
                 return true
             }
         expectation(
@@ -90,7 +97,7 @@ final class PlayerSettingsViewModelTests: XCTestCase {
                 guard let sound = notification.userInfo?["sound"] as? Sound else {
                     return false
                 }
-                XCTAssertEqual(sound, Sound.birds)
+                XCTAssertEqual(sound, Sound.rain)
                 return true
             }
         expectation(
@@ -102,7 +109,7 @@ final class PlayerSettingsViewModelTests: XCTestCase {
                 guard let volume = notification.userInfo?["volume"] as? Float else {
                     return false
                 }
-                XCTAssertEqual(sound, Sound.birds)
+                XCTAssertEqual(sound, Sound.rain)
                 XCTAssertEqual(volume, 0.72)
                 
                 return true
@@ -119,9 +126,9 @@ final class PlayerSettingsViewModelTests: XCTestCase {
                 return true
             }
         
-        vm.toggleActive(sound: .birds)
-        vm.toggleActive(sound: .birds)
-        vm.setVolume(sound: .birds, volume: 0.72)
+        vm.toggleActive(sound: .rain)
+        vm.toggleActive(sound: .rain)
+        vm.setVolume(sound: .rain, volume: 0.72)
         vm.duration = .seconds(123)
         
         waitForExpectations(timeout: 4)
@@ -144,27 +151,6 @@ final class PlayerSettingsViewModelTests: XCTestCase {
             return try JSONDecoder().decode([String: SoundSettings].self, from: settingsJSONData)
         } catch {
             return nil
-        }
-    }
-    
-    class FakePersistenceManager: PersistenceManager {
-        var currentData: Data? = nil
-        var currentInt = 0
-        
-        func getData(for key: String) -> Data? {
-            currentData
-        }
-        
-        func getInt(for key: String) -> Int {
-            currentInt
-        }
-        
-        func setData(for key: String, data: Data) {
-            currentData = data
-        }
-        
-        func setInt(for key: String, n: Int) {
-            currentInt = n
         }
     }
 }

@@ -2,15 +2,14 @@ import Foundation
 
 class PlayerViewModel {
     weak var delegate: PlayerViewModelDelegate?
-    var settingsVM: PlayerSettingsViewModel
     
     private var timer: Timer?
     private var elapsedTime: Duration = .zero
-    private lazy var totalDuration: Duration = settingsVM.duration
+    private var totalDuration: Duration
     private(set) var isPlaying: Bool = false
 
-    init(settingsVM: PlayerSettingsViewModel) {
-        self.settingsVM = settingsVM
+    init(totalDuration: Duration) {
+        self.totalDuration = totalDuration
         subscribe()
     }
     
@@ -38,7 +37,7 @@ class PlayerViewModel {
         delegate?.playerViewModelProgressUpdated(progress: 0, isPlaying: false)
     }
     
-    func setup(totalDuration: Duration) {
+    func configure(totalDuration: Duration) {
         self.totalDuration = totalDuration
         stop()
     }

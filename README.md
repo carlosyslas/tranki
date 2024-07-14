@@ -51,7 +51,6 @@ classDiagram
     PlayerSettingsViewModelDelegate --o PlayerSettingsViewModel
 
     PlayerViewModelDelegate --o PlayerViewModel
-    PlayerViewModel ..> PlayerSettingsViewModel
     PlayerViewModel ..> NotificationCenter
 
     SoundManager <|.. AVAudioSoundManager

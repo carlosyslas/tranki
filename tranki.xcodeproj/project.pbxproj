@@ -30,6 +30,7 @@
 		01BBE2362C2DE9BD00089AC5 /* PlayerSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BBE2352C2DE9BC00089AC5 /* PlayerSettingsViewModel.swift */; };
 		01BBE2382C2E110B00089AC5 /* DurationSettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BBE2372C2E110B00089AC5 /* DurationSettingsViewCell.swift */; };
 		01BBE23A2C2E1B2100089AC5 /* DurationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BBE2392C2E1B2100089AC5 /* DurationSettingsViewController.swift */; };
+		01C62D362C44555C00741962 /* FakePersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C62D352C44555C00741962 /* FakePersistenceManager.swift */; };
 		01C87EDD2C346E0100B6B7CA /* Notification + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C87EDC2C346E0100B6B7CA /* Notification + Extension.swift */; };
 		01D88EA02C40BF4900440648 /* PlayerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D88E9F2C40BF4900440648 /* PlayerViewModelTests.swift */; };
 		01E281BD2C2CDA1000CCB073 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E281BC2C2CDA1000CCB073 /* AppDelegate.swift */; };
@@ -78,6 +79,7 @@
 		01BBE2352C2DE9BC00089AC5 /* PlayerSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSettingsViewModel.swift; sourceTree = "<group>"; };
 		01BBE2372C2E110B00089AC5 /* DurationSettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationSettingsViewCell.swift; sourceTree = "<group>"; };
 		01BBE2392C2E1B2100089AC5 /* DurationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationSettingsViewController.swift; sourceTree = "<group>"; };
+		01C62D352C44555C00741962 /* FakePersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakePersistenceManager.swift; sourceTree = "<group>"; };
 		01C87EDC2C346E0100B6B7CA /* Notification + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification + Extension.swift"; sourceTree = "<group>"; };
 		01D88E9F2C40BF4900440648 /* PlayerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModelTests.swift; sourceTree = "<group>"; };
 		01E281B92C2CDA1000CCB073 /* tranki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tranki.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,13 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01A221F12C40A6170078120C /* trankiUITests */ = {
+		01A221F12C40A6170078120C /* trankiTests */ = {
 			isa = PBXGroup;
 			children = (
 				01A221F92C40A62E0078120C /* PlayerSettingsViewModelTests.swift */,
+				01C62D352C44555C00741962 /* FakePersistenceManager.swift */,
 				01D88E9F2C40BF4900440648 /* PlayerViewModelTests.swift */,
 			);
-			path = trankiUITests;
+			path = trankiTests;
 			sourceTree = "<group>";
 		};
 		01B056302C33337100641053 /* Sounds */ = {
@@ -159,7 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				01E281BB2C2CDA1000CCB073 /* tranki */,
-				01A221F12C40A6170078120C /* trankiUITests */,
+				01A221F12C40A6170078120C /* trankiTests */,
 				01E281BA2C2CDA1000CCB073 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01C62D362C44555C00741962 /* FakePersistenceManager.swift in Sources */,
 				01A221FA2C40A62E0078120C /* PlayerSettingsViewModelTests.swift in Sources */,
 				01D88EA02C40BF4900440648 /* PlayerViewModelTests.swift in Sources */,
 			);
@@ -546,7 +550,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = NG97BXH3PU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tranki/Info.plist;
@@ -576,7 +580,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = NG97BXH3PU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tranki/Info.plist;
