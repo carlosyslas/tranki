@@ -86,9 +86,9 @@ final class PlayerSettingsViewModel: ObservableObject {
 
     private func loadSettings() -> [String: SoundSettings] {
         var settingsMap = [String: SoundSettings]()
-        Sound.allCases.map({ sound in
+        Sound.allCases.enumerated().map({ index, sound in
             SoundSettings(
-                isActive: true,
+                isActive: index == 0,
                 sound: sound,
                 volume: 0.5
             )
