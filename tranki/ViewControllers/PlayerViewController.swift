@@ -158,7 +158,7 @@ class PlayerViewController: UIViewController {
 
     private func playSounds() {
         do {
-            try soundManager.playAllSounds(soundSettings: Array(settingsVM.soundSettings.values))
+            try soundManager.playAllSounds(sounds: Sound.allCases)
         }
         catch {
             // TODO: Show an error to the user
@@ -176,7 +176,9 @@ class PlayerViewController: UIViewController {
         )
         return PlayerViewController(
             settingsVM: playerSettingsViewModel,
-            soundManager: AVAudioSoundManager()
+            soundManager: AVAudioSoundManager(
+                settingsVM: playerSettingsViewModel
+            )
         )
     }
 }

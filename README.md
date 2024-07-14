@@ -55,6 +55,7 @@ classDiagram
     PlayerViewModel ..> NotificationCenter
 
     SoundManager <|.. AVAudioSoundManager
+    SoundManager ..> PlayerSettingsViewModel
 
     PersistenceManager <|.. UserDefaultsPersistenceManager
 

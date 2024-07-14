@@ -1,7 +1,7 @@
 import AVFoundation
 
 protocol SoundManager: AnyObject {
-    func playAllSounds(soundSettings: [SoundSettings]) throws
+    func playAllSounds(sounds: [Sound]) throws
     func updateSoundVolume(sound: Sound, volume: Float)
     func muteSound(sound: Sound)
     func unmuteSound(sound: Sound, previousVolume: Float)
@@ -10,14 +10,14 @@ protocol SoundManager: AnyObject {
 
 
 final class AVAudioSoundManager: SoundManager {
-    static let shared = AVAudioSoundManager()
-    
     private let engine = AVAudioEngine()
     private let mixer = AVAudioMixerNode()
     private var audioPlayers = [Sound: AVAudioPlayerNode]()
     private var isPlaying = false
+    private let settingsVM: PlayerSettingsViewModel
     
-    init() {
+    init(settingsVM: PlayerSettingsViewModel) {
+        self.settingsVM = settingsVM
         setupEngineAndMixer()
     }
     
@@ -27,18 +27,18 @@ final class AVAudioSoundManager: SoundManager {
         engine.connect(mixer, to: engine.mainMixerNode, format: nil)
     }
     
-    func playAllSounds(soundSettings: [SoundSettings]) throws {
+    func playAllSounds(sounds: [Sound]) throws {
         try engine.start()
         
-        soundSettings.forEach { [weak self] settings in
-            self?.playSound(soundSettings: settings)
+        sounds.forEach { [weak self] sound in
+            self?.playSound(sound: sound)
         }
     }
     
-    private func playSound(soundSettings: SoundSettings) {
+    private func playSound(sound: Sound) {
+        guard let soundSettings = settingsVM.soundSettings[sound.rawValue] else { return }
         guard engine.isRunning == true else { return }
         isPlaying = true
-        let sound = soundSettings.sound
         
         do {
             guard let fileUrl = Bundle.main.url(forResource: soundSettings.sound.props.audioFileName, withExtension: "mp3") else {
@@ -59,7 +59,7 @@ final class AVAudioSoundManager: SoundManager {
                 DispatchQueue.global(qos: .background).async { [weak self] in
                     guard let isPlaying = self?.isPlaying else { return }
                     if isPlaying {
-                        self?.playSound(soundSettings: soundSettings)
+                        self?.playSound(sound: sound)
                     }
                 }
             }
