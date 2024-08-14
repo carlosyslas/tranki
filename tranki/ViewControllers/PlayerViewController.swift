@@ -117,6 +117,8 @@ class PlayerViewController: UIViewController {
     }
     
     @objc private func togglePlayButtonPressed(_ sender: UIButton) {
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium, view: togglePlayButton)
+        feedbackGenerator.impactOccurred()
         if playerVM.isPlaying {
             playerVM.stop()
             configureTogglePlayButton(isPlaying: false)
