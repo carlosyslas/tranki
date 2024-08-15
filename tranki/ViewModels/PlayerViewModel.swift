@@ -7,6 +7,12 @@ class PlayerViewModel {
     private var elapsedTime: Duration = .zero
     private var totalDuration: Duration
     private(set) var isPlaying: Bool = false
+    
+    var remainingTimeText: String {
+        let remaining = totalDuration - elapsedTime
+        
+        return remaining.formatted(.time(pattern: .minuteSecond))
+    }
 
     init(totalDuration: Duration) {
         self.totalDuration = totalDuration

@@ -54,6 +54,8 @@ class PlayerViewController: UIViewController {
         
         playerVM.delegate = self
         
+        
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(hex: Theme.current.foregroundDim)]
         layout()
         configureTogglePlayButton(isPlaying: false)
         subscribe()
@@ -192,6 +194,13 @@ extension PlayerViewController: PlayerViewModelDelegate {
     
     func playerViewModelProgressUpdated(progress: Float, isPlaying: Bool) {
         progressBar.configure(progress: CGFloat(progress))
+        
+        if isPlaying {
+            navigationItem.title = playerVM.remainingTimeText
+        } else {
+            navigationItem.title = ""
+        }
+        
         if !isPlaying {
             configureTogglePlayButton(isPlaying: isPlaying)
         }
